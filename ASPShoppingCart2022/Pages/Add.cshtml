@@ -1,0 +1,27 @@
+﻿@page
+@model ASPShoppingCart2022.Pages.AddModel
+@{
+}
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Item.Name"></label>
+        <input name="item-name" id="item-name" type="text" class="form-control" asp-for="Item.Name" aria-describedby="nameHelp" placeholder="Židlička">
+        <span asp-validation-for="Item.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Item.Amount"></label>
+        <input name="item-amount" id="item-amount" type="number" class="form-control" asp-for="Item.Amount" aria-describedby="nameHelp" placeholder="1">
+        <span asp-validation-for="Item.Amount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Item.UnitPrice"></label>
+        <input name="item-price" id="item-price" type="text" class="form-control" asp-for="Item.UnitPrice" aria-describedby="nameHelp" placeholder="100">
+        <span asp-validation-for="Item.UnitPrice" class="text-danger"></span>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Přidat</button>
+        <a asp-page="./Index" class="btn btn-secondary">Zpět</a>
+    </div>
+</form>

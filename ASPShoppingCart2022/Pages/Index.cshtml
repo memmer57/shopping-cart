@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>Nákupní košík</h1>
+@if (Model.AlertMessege != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @Model.AlertMessege
+    </div>
+}
+<div class="mt-1">
+    <a class="btn btn-danger" asp-page-handler="Clear">Vymazat</a>
+</div>
+@if (Model.Cart.Count == 0)
+            {
+    <p>Košík je prázdný.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Zboží</th>
+                <th>Počet kusů</th>
+                <th>Jednotková cena</th>
+                <th>Cena</th>
+                <th>Akce</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int x = 0;
+            }
+                @foreach(var item in Model.Cart)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Amount</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@(item.UnitPrice * item.Amount)</td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" asp-page-handler="Delete" asp-route-val="@x">Odstranit</a>
+                        </td>
+                    </tr>
+                    x++;
+            }
+                    </tbody>
+                </table>
+            }
+<div>
+    <a asp-page="./Add" class="btn btn-primary">Přidat novou položku</a>
+</div>
